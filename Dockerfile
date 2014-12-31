@@ -39,3 +39,7 @@ EXPOSE 6543
 
 #ENTRYPOINT ["/venv/bin/pserve", "/app/development.ini"]
 ENTRYPOINT ["/usr/local/bin/pserve", "/app/development.ini"]
+
+# e.g. to build and run in docker:
+# docker build -t test .
+# sudo docker run -i -t -p 8081:6543 test
