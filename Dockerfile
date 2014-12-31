@@ -1,4 +1,5 @@
 FROM debian:wheezy
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
     git \
@@ -14,11 +15,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
 
 RUN pip install virtualenv
 
-RUN cd / && virtualenv -p /usr/bin/python2.7 venv
+#RUN cd / && virtualenv -p /usr/bin/python2.7 venv
 
-ENV VENV="/venv/"
+#ENV VENV="/venv/"
 
-RUN source /venv/bin/activate
+#RUN source /venv/bin/activate
 
 RUN pip install pyramid Jinja2 pyramid-debugtoolbar pyramid-jinja2 setuptools
 
@@ -28,10 +29,13 @@ WORKDIR /app
 
 
 
-RUN cd /app && $VENV/bin/python setup.py develop
+#RUN cd /app && $VENV/bin/python setup.py develop
+RUN /usr/bin/python setup.py develop
 
-RUN cd /app && $VENV/bin/python setup.py test -q
+#RUN cd /app && $VENV/bin/python setup.py test -q
+RUN /usr/bin/python setup.py test -q
 
 EXPOSE 6543
 
-ENTRYPOINT ["$VENV/bin/pserve", "/app/development.ini"]
+#ENTRYPOINT ["/venv/bin/pserve", "/app/development.ini"]
+ENTRYPOINT ["/usr/local/bin/pserve", "/app/development.ini"]
