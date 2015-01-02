@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM phusion/baseimage:0.9.15
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
