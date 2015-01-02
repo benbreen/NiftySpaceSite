@@ -5,12 +5,12 @@
     "Update": "true"
   },
   "Authentication": {
-      "Bucket": "my-secret-s3-bucket",
-      "Key": "docker/.dockercfg"
+      "Bucket": "niftyspaceresources",
+      "Key": ".dockercfg"
   },
   "Ports": [
     {
-      "ContainerPort": "80"
+      "ContainerPort": "6543"
     }
   ],
   "Logging": "/var/log/"
